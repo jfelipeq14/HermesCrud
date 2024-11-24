@@ -1,0 +1,49 @@
+﻿@model List<HermesCrud.Models.Reserva>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lista de reservas</h5>
+    </div>
+    <div class="card-body">
+        <a class="btn btn-success btn-sm" asp-action="ReservaDetalle" asp-controller="Home" asp-route-idReserva="0">Crear Nuevo</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cliente</th>
+                    <th>Fecha ejecución</th>
+                    <th>Fecha reserva</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdReserva</td>
+                        <td>@item.oCliente.IdCliente</td>
+                        <td>@item.oProgramacion.FechaEjecucion</td>
+                        <td>@item.FechaReserva</td>
+                        <td>@item.ValorReserva</td>
+                        <td>@item.EstadoReserva</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm " asp-action="ReservaDetalle" asp-controller="Home" asp-route-idReserva="@item.IdReserva"> Editar</a>
+                            <a class="btn btn-danger btn-sm " asp-action="Eliminar" asp-controller="Home" asp-route-idReserva="@item.IdReserva"> Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
